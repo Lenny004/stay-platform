@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('foods', function (Blueprint $table) {
             $table->id(); // id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY
-            $table->string('food', 10)->unique(); // food VARCHAR(10) NOT NULL UNIQUE
+            $table->string('food', 12)->unique(); // food VARCHAR(10) NOT NULL UNIQUE
         });
     }
 
