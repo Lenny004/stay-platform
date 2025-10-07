@@ -1,0 +1,76 @@
+/* Navbar */
+nav {
+    padding: 0 10rem;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 100rem;
+}
+
+.card {
+    flex-direction: row;
+    width: inherit;
+    height: auto;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.card>.image-container>img,.card>img {
+    width: 20rem;
+    height: 23rem;
+    border-radius: 1.2rem 0 0 1.2rem;
+}
+
+.card-content {
+    width: 60rem;
+    flex-direction: column;
+    display: inherit;
+    justify-content: space-around;
+}
+
+.card-opinion {
+    display: none;
+}
+
+/* Opiniones de la card */
+.card-opinion2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: var(--sm);
+    margin: 1.5rem 0rem 0rem;
+}
+
+.card-opinion2 span {
+    font-family: var(--bold);
+}
+
+/* Estilos para el footer*/
+.footer-links {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 4fr) minmax(0, 1fr);
+    align-items: start;
+    /* Alinea los elementos en la parte superior */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card-opiniones{
+    min-width: 70rem;
+}
+
+.modal_opinion textarea{
+    min-width: 60rem;
+    width: 80rem;
+}

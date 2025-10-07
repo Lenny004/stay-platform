@@ -1,0 +1,282 @@
+.menu {
+    display: block;
+}
+
+nav {
+    padding: 0 2rem;
+}
+
+nav h1 {
+    padding: 0 1rem;
+}
+
+.navbar-left ul {
+    display: none;
+}
+
+.navbar-right a {
+    display: none;
+}
+
+.menu-drop {
+    top: 8%;
+    right: 2rem;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    background-color: var(--white);
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    font-size: var(--sm);
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    background: var(--btn);
+}
+
+.sidenav .closebtn {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 2.5rem;
+    font-size: 3.6rem;
+    margin-left: 5rem;
+}
+
+/* Mostrar el sidenav */
+.sidenav.show {
+    display: block;
+    width: 25rem;
+}
+
+/*CARDS*/
+.cards-container {
+    padding: 0;
+}
+
+.card {
+    width: 90%;
+    /* Hace que la tarjeta sea más pequeña en móviles */
+    max-width: 28rem;
+    /* Evita que sea más grande de lo necesario */
+    margin: 2rem auto;
+    /* Mantiene margen y centrado */
+}
+
+/*Footer*/
+.social,
+.support,
+.management {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-opinion2 {
+    display: none;
+}
+
+.card-perfil {
+    width: 25rem;
+}
+
+.form-buscar {
+    width: 80%;
+}
+
+.form-group input,
+textarea {
+    width: auto;
+}
+
+.modal {
+    max-width: 90%;
+}
+
+.pill-form {
+    gap: 2px;
+}
+
+.centrar .pill {
+    gap: 5px;
+    padding: 5px 10px;
+}
+
+.criterios {
+    max-width: 75%;
+}
+
+.title-opiniones {
+    width: 100%;
+}
+
+.card-opiniones {
+    width: 75%;
+    max-width: 28rem;
+}
+
+.carousel-container {
+    padding: 0; /* quita padding lateral para aprovechar ancho */
+    width: 90vw;
+}
+
+.carousel-slide{
+    padding-left: 1rem;
+}
+
+.card-history {
+    padding: var(--sm);
+    max-width: 24rem;
+    width: 24rem;
+}
+
+.card-opiniones-scroll {
+    width: 75%;
+    max-width: 28rem;
+}
+
+.card-history .acciones {
+    width: fit-content;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.title-opiniones2 {
+    width: 80%;
+}
+
+iframe {
+    width: 100%;
+    height: auto;
+}
+
+.img-view {
+    width: 100%;
+    height: 20rem;
+}
+
+.diamond {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 1.5rem;
+}
+
+.diamond img {
+    width: 12rem;
+    height: 12rem;
+}
+
+.diamond-row .diamond:nth-child(1) {
+    left: 8rem;
+}
+
+.diamond-row .diamond:nth-child(2) {
+    top: 9rem;
+    left: 1.2rem;
+}
+
+.diamond-row .diamond:nth-child(3) {
+    top: 7rem;
+    left: 16rem;
+}
+
+.diamond-row .diamond:nth-child(4) {
+    top: 14rem;
+    left: 9rem;
+}
+
+.diamond-row .diamond:nth-child(5) {
+    top: 21rem;
+    left: 2rem;
+}
+
+.diamond-row .diamond:nth-child(6) {
+    top: 16rem;
+    left: 20rem;
+}
+
+.diamond-row .diamond:nth-child(7) {
+    position: absolute;
+    top: 23rem;
+    left: 13rem;
+}
+
+.diamond-row {
+    left: 1%;
+    right: 55%;
+    width: 30rem;
+    height: 35rem;
+}
+
+.contenedor-detalle {
+    margin: 0rem 0 2rem 0;
+}
+
+.contenedor-detalle__img {
+    width: 100%;
+    height: auto;
+}
+
+.imgs-detalle__stage {
+    width: 48.5%;
+    margin: 0.5rem 0;
+}
+
+.imgs-detalle {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.rating-categories {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.section-rv{
+    width: 90%;
+    padding: 0;
+}
+
+.details > *:not(:first-child) {
+    padding: 0 var(--sm);
+}
+
+.details>.criterios_info{
+    width: 90%;
+}
+
+.details hr{
+    width: 90%;
+}
+
+.reservation {
+    width: 100%;
+}
+
+.modal_opinion .form-group textarea{
+    width: 100%;
+}
+
+.modal_opinion textarea {
+    min-width: 30rem;
+}

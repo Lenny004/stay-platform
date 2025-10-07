@@ -1,0 +1,56 @@
+b nav {
+    padding: 0 10rem;
+}
+
+/*CARDS*/
+.cards-container {
+    padding: 0;
+}
+
+.carousel-container {
+    padding: 0;
+    width: 90vw;
+}
+
+.card {
+    width: 28rem;
+}
+
+.card-opinion2 {
+    display: none;
+}
+
+.criterios {
+    max-width: 78%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.section-rv {
+    width: 90%;
+}
+
+.diamond-row {
+    left: -18%;
+    right: 55%;
+    width: 70rem;
+}
+
+.contenedor-detalle__img {
+    width: 80%;
+    height: 40.5rem;
+}
+
+.imgs-detalle__stage {
+    width: 80%;
+}
+
+.modal_opinion textarea {
+    min-width: 60rem;
+    width: 80rem;
+}
