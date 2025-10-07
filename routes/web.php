@@ -21,6 +21,7 @@ Route::middleware('guest')->group(function () {
         return view('auth.login');
     })->name('login');
 
+    Route::post('/login', [LoginController::class, 'login'])->name('login.post');
     Route::get('/registro', [RegisterController::class, 'show'])->name('register');
     Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
     
