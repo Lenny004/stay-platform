@@ -17,11 +17,17 @@ Route::get('/favoritos', function () {
 
 // ===== AUTENTICACIÓN =====
 Route::middleware('guest')->group(function () {
-    //Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    //Route::post('/login', [LoginController::class, 'login']);
-    
+    Route::get('/login', function () {
+        return view('auth.login');
+    })->name('login');
+
     Route::get('/registro', [RegisterController::class, 'show'])->name('register');
-    Route::post('/registro', [RegisterController::class, 'store']);
+    Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
+    
+    Route::get('/password/request', function () {
+        // Usar la vista de olvidar.html de StaySV
+        return view('olvidar');
+    })->name('password.request');
 });
 
 // ===== APIs PÚBLICAS =====
@@ -43,5 +49,5 @@ Route::middleware('auth')->group(function () {
         return view('perfil');
     })->name('perfil');
     
-    //Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

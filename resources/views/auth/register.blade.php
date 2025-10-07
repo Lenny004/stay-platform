@@ -4,7 +4,7 @@
 
 @section('content')
 <main class="login-container">
-    <img src="{{ asset('public/resources/imgs/stay_logo.png') }}" alt="Stay Logo">
+    <img src="{{ asset('resources/imgs/stay_logo.png') }}" alt="Stay Logo">
     <h1>Crear una cuenta</h1>
     
     <form method="POST" class="login-container__form" id="register_form" autocomplete="off">

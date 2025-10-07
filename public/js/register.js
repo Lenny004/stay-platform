@@ -179,14 +179,37 @@ document.getElementById('register_form').addEventListener('submit', async functi
             }
         });
 
-        const data = await response.json();
+        // Manejo específico de errores de validación de Laravel (422)
+            if (response.status === 422) {
+                const errorPayload = await response.json().catch(() => ({}));
+                console.log('Laravel 422 error payload:', errorPayload);
+                let errorMsg = '';
+                if (errorPayload && errorPayload.errors) {
+                    Object.entries(errorPayload.errors).forEach(([field, messages]) => {
+                        errorMsg += `${Array.isArray(messages) ? messages.join(' ') : messages}`;
+                    });
+                    sweetAlert(3, errorMsg, null, 'top-end', 7000);
+                } else {
+                    sweetAlert(3, 'Datos inválidos. Verifica el formulario.', null, 'top-end', 5000);
+                }
+                return;
+            }
 
+        if (!response.ok) {
+            const errText = await response.text().catch(() => '');
+            throw new Error(`Error del servidor: ${response.status}${errText ? ' - ' + errText : ''}`);
+        }
+
+        const data = await response.json();
+        
         if (data.estado === 1) {
             sweetAlert(1, data.message, data.redirect, 'top-end', 2000);
         } else {
-            sweetAlert(2, data.exception, null, 'top-end', 4000);
+            // Compatibilidad con respuestas personalizadas
+            const msg = data.exception || data.message || 'No se pudo completar el registro';
+            sweetAlert(3, msg, null, 'top-end', 4000);
         }
     } catch (error) {
-        sweetAlert(2, 'Error al registrar: ' + error.message, null, 'top-end', 4000);
+        sweetAlert(2, 'Error al registrar: ' + (error && error.message ? error.message : error), null, 'top-end', 4000);
     }
 });
