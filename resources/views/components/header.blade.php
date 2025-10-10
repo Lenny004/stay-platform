@@ -5,7 +5,7 @@
             <h1>STAY SV</h1>
             <ul>
                 <li>
-                    <a href="{{ route('home') }}">Inicio</a>
+                    <a href="{{ route('dashboard.public') }}">Inicio</a>
                 </li>
                 <li>
                     <a href="#">Destacados</a> {{-- Temporal --}}

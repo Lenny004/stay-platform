@@ -8,7 +8,7 @@ use App\Http\Controllers\HotelController;
 // ===== PÁGINA PRINCIPAL (DASHBOARD PÚBLICO) =====
 Route::get('/', function () {
     return view('dashboard');
-})->name('home');
+})->name('dashboard.public');
 
 // ===== PÁGINAS PÚBLICAS =====
 Route::get('/favoritos', function () {

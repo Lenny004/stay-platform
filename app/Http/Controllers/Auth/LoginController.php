@@ -28,7 +28,6 @@ class LoginController extends Controller
         $user = User::where('username', $request->user)
                     ->where('user_type_id', 2) // Solo clientes
                     ->first();
-
         // Verificar si existe y la contraseña es correcta
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
@@ -36,14 +35,13 @@ class LoginController extends Controller
                 'exception' => 'El usuario o la contraseña ingresados no son válidos'
             ]);
         }
-
+        
         // Login exitoso
         Auth::login($user);
-
         return response()->json([
             'estado' => 1,
             'message' => 'Credenciales correctas',
-            'redirect' => route('home')
+            'redirect' => route('dashboard.public')
         ]);
     }
 

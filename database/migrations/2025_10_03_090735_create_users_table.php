@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('full_name', 70);
             $table->string('username', 70)->unique();
             $table->string('email', 90);
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_image', 80)->nullable();
             $table->string('phone_country_code', 10)->default('+503');

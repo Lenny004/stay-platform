@@ -1,6 +1,6 @@
 <div id="sidenav" class="sidenav">
     <span class="closebtn" onclick="closeSidenav()">&times;</span>
-    <a href="{{ route('home') }}">Inicio</a>
+    <a href="{{ route('dashboard.public') }}">Inicio</a>
     <a href="#">Destacados</a> {{-- Temporal sin ruta --}}
     <hr>
 
