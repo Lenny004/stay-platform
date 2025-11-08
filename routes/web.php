@@ -15,6 +15,11 @@ Route::get('/favoritos', function () {
     return view('favoritos');
 })->name('favoritos');
 
+Route::view('/avisos', 'pages.avisos')->name('support.avisos');
+Route::view('/contactanos', 'pages.contactanos')->name('support.contact');
+Route::view('/legal', 'pages.legal')->name('support.legal');
+Route::view('/terminos', 'pages.terminos')->name('support.terminos');
+
 // ===== AUTENTICACIÓN =====
 Route::middleware('guest')->group(function () {
     Route::get('/login', function () {
