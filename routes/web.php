@@ -52,8 +52,13 @@ Route::prefix('api')->group(function () {
 // ===== RUTAS PROTEGIDAS =====
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', function () {
-        return view('perfil');
+        return view('auth.account.profile');
     })->name('perfil');
-    
+    Route::get('/reservation_history', function () {
+        return view('account.reservation_history');
+    })->name('reservation_history');
+    Route::get('/reviews', function () {
+        return view('account.reviews');
+    })->name('reviews');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

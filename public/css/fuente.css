@@ -1,47 +1,44 @@
 @font-face {
-    font-family: 'Inter';
-    font-weight: normal;
-    src: url('../fonts/Inter-Regular.woff2');
-    /*ltr:El contenido, texto y otros elementos fluyen de izquierda a derecha.*/
     direction: ltr;
-    line-height: 1.6;
-    letter-spacing: 0.3rem;
-    text-transform: none;
     display: inline-block;
+    font-family: Inter;
+    font-weight: 400;
+    letter-spacing: .3rem;
+    line-height: 1.6;
+    src: url(../fonts/Inter-Regular.woff2);
+    text-transform: none;
     white-space: nowrap;
-    word-wrap: normal;
+    word-wrap: normal
 }
 
 @font-face {
-    font-family: 'Inter-Bold';
-    font-weight: bold;
-    src: url('../fonts/Inter-Bold.woff2');
-    /*ltr:El contenido, texto y otros elementos fluyen de izquierda a derecha.*/
     direction: ltr;
-    line-height: 1.6;
-    letter-spacing: 0.3rem;
-    text-transform: none;
     display: inline-block;
+    font-family: Inter-Bold;
+    font-weight: 700;
+    letter-spacing: .3rem;
+    line-height: 1.6;
+    src: url(../fonts/Inter-Bold.woff2);
+    text-transform: none;
     white-space: nowrap;
-    word-wrap: normal;
+    word-wrap: normal
 }
 
 @font-face {
-    font-family: 'Inter-Light';
+    direction: ltr;
+    display: inline-block;
+    font-family: Inter-Light;
     font-weight: light;
-    src: url('../fonts/Inter-Light.woff2');
-    /*ltr:El contenido, texto y otros elementos fluyen de izquierda a derecha.*/
-    direction: ltr;
+    letter-spacing: .3rem;
     line-height: 1.6;
-    letter-spacing: 0.3rem;
+    src: url(../fonts/Inter-Light.woff2);
     text-transform: none;
-    display: inline-block;
     white-space: nowrap;
-    word-wrap: normal;
+    word-wrap: normal
 }
 
 :root {
-    --normal: 'Inter', sans-serif;
-    --light: 'Inter-Light', sans-serif;
-    --bold: 'Inter-Bold', sans-serif;
+    --normal: "Inter", sans-serif;
+    --light: "Inter-Light", sans-serif;
+    --bold: "Inter-Bold", sans-serif
 }

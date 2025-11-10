@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --white: #fff;
+            --blue: #1e293b;
+            --light-blue: #52c3ed;
+            --light-blue2: rgba(82, 195, 237, .1);
+            --gray: #eeecec;
+            --dark-gray: #8b939f;
+            --dark-green: #0f8236;
+            --light-green: #f0fdf4;
+            --light-red: #fecccf;
+            --red: #bc4b51;
+            --img: 4.5rem;
+            --icons: 2.4rem;
+            --sm: 1.4rem;
+            --md: 1.6rem;
+            --lg: 2.2rem;
+            --text-input-field: #f7f7f7;
+            --shadow: rgba(99, 99, 99, .2) 0rem 2px 8px 0rem;
+            --btn: linear-gradient(to right bottom, rgba(190, 228, 248, .5), rgba(203, 230, 246, .5) 43%, rgba(220, 218, 230, .5));
+            --border: 1px solid rgba(0, 0, 0, .15);
+            --radius: 0.6rem;
+            --radius2: 2.2rem;
+            --transition-speed: 0.5s ease;
+        }
+
+        .profile-container {
+            max-width: 700px;
+            margin: 3rem auto;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            border-bottom: var(--border);
+            padding-bottom: 1.5rem;
+        }
+
+        .profile-img {
+            width: 9rem;
+            height: 9rem;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--light-blue);
+        }
+
+        .profile-info h2 {
+            font-size: var(--lg);
+            color: var(--blue);
+            margin: 0;
+        }
+
+        .profile-info p {
+            font-size: var(--md);
+            color: var(--dark-gray);
+            margin: 0.3rem 0;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            background: var(--btn);
+            border: none;
+            padding: 0.8rem 1.6rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            color: var(--blue);
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: var(--light-blue);
+            color: var(--white);
+        }
+
+        .profile-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .link-card {
+            display: block;
+            background: var(--light-blue2);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: var(--blue);
+            transition: all var(--transition-speed);
+            border: 1px solid transparent;
+        }
+
+        .link-card:hover {
+            background: var(--light-blue);
+            color: var(--white);
+            border: var(--border);
+        }
+
+        .link-card h3 {
+            margin: 0 0 0.5rem 0;
+        }
+
+        .link-card p {
+            font-size: var(--sm);
+            color: var(--dark-gray);
+        }
+    </style>
+</head>
+
+<body>
+    <section class="profile-container">
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/150" alt="Foto de perfil" class="profile-img">
+            <div class="profile-info">
+                <h2 class="username">Juan Pérez</h2>
+                <p class="creation-date">Cuenta creada: 12/03/2022</p>
+                <p class="reservations">Reservas realizadas: <span>8</span></p>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <button class="btn edit-info">Editar información</button>
+            <button class="btn change-password">Cambiar contraseña</button>
+        </div>
+
+        <div class="profile-links">
+            <a href="/reservaciones" class="link-card">
+                <h3>Ver reservaciones</h3>
+                <p>Consulta tus próximas y pasadas estancias</p>
+            </a>
+
+            <a href="/opiniones" class="link-card">
+                <h3>Mis opiniones</h3>
+                <p>Revisa y edita tus comentarios</p>
+            </a>
+        </div>
+    </section>
+
+</body>
+
+</html>
