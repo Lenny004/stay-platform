@@ -43,7 +43,13 @@
             <hr>
             <div class="opt-filters">
                 <h2>Servicios</h2>
-                <div class="content-pill" id="container_servicio"></div>
+                <div class="content-pill" id="container_servicio">
+                    <div class="content-pill_stage">
+                        <input type="checkbox" id="wifi" name="amenities" value="wifi">
+                        <label for="wifi" class="">Wi-Fi Gratis</label>
+                        <img src="{{ asset('resources/icons/wifi.png') }}" alt="Wi-Fi Gratis">
+                    </div>
+                </div>
             </div>
             <hr>
             <div class="opt-filters">
@@ -85,7 +91,7 @@
         <hr>
         <div class="acciones">
             <a class="btn danger-button" id="btn-eliminar">Eliminar filtros</a>
-            <a class="btn secundary-button" href="#">Seleccionar</a>
+            <a class="btn secundary-button" href="#">Buscar</a>
         </div>
     </div>
 

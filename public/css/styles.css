@@ -553,7 +553,7 @@ select:focus {
     transition: var(--transition-speed);
 }
 
-.card:hover>img{
+.card:hover>img {
     transform: scale(1.08);
 }
 
@@ -587,7 +587,8 @@ select:focus {
     font-size: var(--sm)
 }
 
-.score-block{
+.score-block,
+.ubication {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -611,7 +612,9 @@ select:focus {
     width: 5rem
 }
 
-.score img {
+.score img,
+.ubication img,
+.content-pill_stage img {
     height: var(--icons);
     width: var(--icons)
 }
@@ -699,7 +702,7 @@ select:focus {
     z-index: 1;
 }
 
-.btn:hover{
+.btn:hover {
     color: var(--white);
     transform: translateY(-2px);
     box-shadow: var(--shadow);
@@ -1028,14 +1031,33 @@ body.no-scroll {
 .content-pill_stage {
     align-items: center;
     background-color: var(--gray);
-    border-radius: var(--radius2);
+    border-color: var(--light-blue);
+    border-radius: var(--radius);
     color: var(--blue);
     cursor: pointer;
+    gap: 8px;
     display: flex;
     font-size: var(--sm);
-    padding: 10px 15px;
+    padding: 8px;
     text-decoration: none;
-    transition: background-color .3s ease, transform .3s ease
+    transition: background-color .3s ease, transform .3s ease;
+}
+
+.content-pill_stage label {
+    font-size: 14px;
+    color: var(--blue);
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+}
+
+.content-pill_stage img {
+    margin-right: 8px;
+    transition: transform .3s ease, filter .3s ease;
+}
+
+.content-pill_stage:hover img {
+    filter: brightness(0) saturate(100%) invert(35%) sepia(65%) saturate(400%) hue-rotate(170deg)
 }
 
 .content-pill_stage:hover {
@@ -1044,27 +1066,24 @@ body.no-scroll {
 
 .content-pill_stage.selected {
     background: var(--btn);
-    color: var(--blue)
 }
+
+/*
+
+
+
 
 .content-pill_stage:hover:not(.selected) {
     background-color: var(--dark-gray)
 }
 
-.content-pill_stage img {
-    height: 18px;
-    margin-right: 8px;
-    transition: transform .3s ease, filter .3s ease;
-    width: 18px
-}
+
 
 .content-pill_stage.selected img {
     transform: scale(1.1)
 }
 
-.content-pill_stage img:hover {
-    filter: brightness(0) saturate(100%) invert(35%) sepia(65%) saturate(400%) hue-rotate(170deg)
-}
+*/
 
 input[type=checkbox] {
     align-items: center;
@@ -1075,13 +1094,11 @@ input[type=checkbox] {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     display: flex;
-    height: 2.5rem;
     justify-content: center;
-    margin: 1.5rem 0;
-    margin: var(--md) .5rem;
-    min-width: 2rem;
+    min-width: 1.5rem;
     transition: var(--transition-speed);
-    width: 2.5rem
+    width: 1.8rem;
+    height: 1.8rem;
 }
 
 input[type=checkbox]:checked {
@@ -1163,4 +1180,3 @@ iframe {
     width: 90px;
     z-index: 1;
 }
-

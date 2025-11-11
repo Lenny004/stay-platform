@@ -3,7 +3,6 @@ const loginForm = document.getElementById('login_form');
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
         const formData = new FormData(loginForm);
         
         // Validación básica

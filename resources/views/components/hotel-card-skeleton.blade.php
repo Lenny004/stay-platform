@@ -1,13 +1,14 @@
 <div class="card">
-    <img src="{{ asset('resources/imgs/no_available.jpg') }}" alt="hotel_img">
+    <img src="{{ asset('resources/imgs/hotel1.jpg') }}" alt="hotel_img">
     <div class="card-content">
         <h1>Suite Frente al Mar</h1>
-        <div class="tags">
-            <span><img src="{{ asset('resources/icons/star.png') }}" alt="start">La Libertad</span>
+        <div class="ubication">
+            <span><img src="{{ asset('resources/icons/location.png') }}" alt="start"></span>
+            <span><p><b>La Libertad</b></p></span>
         </div>
         <p>Suite con vista al mar, aire acondicionado y jacuzzi</p>
         <div class="card-opinion2">
-            <div class="ubication">
+            <div class="score-block">
                 <div class="score">
                     <span>4.5</span>
                     <span><img src="{{ asset('resources/icons/star.png') }}" alt="start"></span>
