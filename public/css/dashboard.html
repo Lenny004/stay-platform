@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gestión de Hoteles</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="private.css">
+    <link rel="stylesheet" href="fuente.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Side Navigation -->
+        <nav class="sidenav">
+            <div class="sidenav-header">
+                <img class="logo-img" src="../resources/imgs/stay_logo.png" alt="logo">
+                <h1>STAY SV</h1>
+            </div>
+
+            <ul class="sidenav-list">
+                <li class="sidenav-label">Home</li>
+                <li class="sidenav-button active" data-section="dashboard">
+                    <button>
+                        <img class="icon" src="../resources/icons/dashboard.png" alt="">
+                        <span class="text">Dashboard</span>
+                    </button>
+                </li>
+                <li class="sidenav-button" data-section="profile">
+                    <button>
+                        <img class="icon" src="../resources/icons/profile_g.png" alt="">
+                        <span class="text">Configuración personal</span>
+                    </button>
+                </li>
+            </ul>
+
+            <ul class="sidenav-list">
+                <li class="sidenav-label">Características</li>
+                <li class="sidenav-button" data-section="hotels">
+                    <button>
+                        <img class="icon" src="../resources/icons/hotel_g.png" alt="">
+                        <span class="text">Hotel</span>
+                    </button>
+                </li>
+                <li class="sidenav-button" data-section="room-types">
+                    <button>
+                        <img class="icon" src="../resources/icons/door_g.png" alt="">
+                        <span class="text">Tipos de Habitaciones</span>
+                    </button>
+                </li>
+                <li class="sidenav-button" data-section="rooms">
+                    <button>
+                        <img class="icon" src="../resources/icons/room_g.png" alt="">
+                        <span class="text">Habitaciones</span>
+                    </button>
+                </li>
+            </ul>
+
+            <ul class="sidenav-list">
+                <li class="sidenav-label">Settings</li>
+                <li class="sidenav-button" data-section="activities">
+                    <button>
+                        <img class="icon" src="../resources/icons/activities.png" alt="">
+                        <span class="text">Actividades</span>
+                    </button>
+                </li>
+                <li class="sidenav-button" data-section="tags">
+                    <button>
+                        <img class="icon" src="../resources/icons/tags.png" alt="">
+                        <span class="text">Tags</span>
+                    </button>
+                </li>
+                <li class="sidenav-button" data-section="services">
+                    <button>
+                        <img class="icon" src="../resources/icons/services.png" alt="">
+                        <span class="text">Servicios</span>
+                    </button>
+                </li>
+            </ul>
+
+            <ul class="sidenav-list sidenav-list--bottom">
+                <li class="sidenav-label">Extra</li>
+                <li class="sidenav-button" data-section="logout">
+                    <button>
+                        <span class="text">Cerrar sesión</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <nav class="topnav">
+                <div class="navbar-left">
+                    <h1>Dashboard</h1>
+                </div>
+                <div class="navbar-right">
+                    <a href="#" id="theme-toggle-link">
+                        <img id="theme-icon" src="../resources/icons/sun.png" alt="change_color">
+                    </a>
+                    <a class="user-icon">
+                        <img src="../resources/imgs/user.jpg" alt="user">
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Content Area -->
+            <section class="content-area" id="content-area">
+                <!-- Aquí irá el contenido dinámico de cada sección -->
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Manejo de navegación
+        const sidenavButtons = document.querySelectorAll('.sidenav-button');
+        const sectionTitle = document.getElementById('section-title');
+        const contentArea = document.getElementById('content-area');
+
+        const sectionTitles = {
+            'dashboard': 'Dashboard',
+            'profile': 'Configuración personal',
+            'hotels': 'Hotel',
+            'room-types': 'Tipos de Habitaciones',
+            'rooms': 'Habitaciones',
+            'activities': 'Actividades',
+            'tags': 'Tags',
+            'services': 'Servicios',
+            'logout': 'Cerrar sesión'
+        };
+
+        // Función para actualizar iconos según estado activo
+        function updateIcon(button) {
+            const img = button.querySelector('.icon');
+            if (!img) return;
+
+            const isActive = button.classList.contains('active');
+            const base = img.src.replace(/_g\.png$/, '.png'); // limpia _g si existe
+
+            img.src = isActive ? base : base.replace('.png', '_g.png');
+        }
+
+        sidenavButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const section = this.dataset.section;
+
+                // 1. Desactivar todos y poner iconos _g
+                sidenavButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    updateIcon(btn);
+                });
+
+                // 2. Activar el actual
+                this.classList.add('active');
+                updateIcon(this);
+
+                // 3. Actualizar título
+                sectionTitle.textContent = sectionTitles[section] ?? section;
+
+                // 4. Logout
+                if (section === 'logout') {
+                    console.log('Cerrando sesión...');
+                    // window.location.href = '/logout';
+                }
+            });
+        });
+
+        // ---------- TEMA CON ICONO SUN/MOON + LOCALSTORAGE ----------
+        const themeToggleLink = document.getElementById('theme-toggle-link');
+        const themeIcon = document.getElementById('theme-icon');
+
+        const applyTheme = (theme) => {
+            if (theme === 'dark') {
+                document.body.classList.add('dark-theme');
+                themeIcon.src = '../resources/icons/moon.png';
+            } else {
+                document.body.classList.remove('dark-theme');
+                themeIcon.src = '../resources/icons/sun.png';
+            }
+        };
+
+        // Al cargar: restaurar tema guardado (o claro por defecto)
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        // Alternar tema al hacer clic
+        themeToggleLink.addEventListener('click', (e) => {
+            e.preventDefault(); // evita salto #
+            const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+
+</html>

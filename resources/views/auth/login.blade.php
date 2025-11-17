@@ -37,7 +37,7 @@
     </div>
 </main>
 
-@include('components.footer')
+@include('components.public.footer')
 @endsection
 
 @push('scripts')

@@ -15,10 +15,10 @@ Route::get('/favoritos', function () {
     return view('favoritos');
 })->name('favoritos');
 
-Route::view('/avisos', 'pages.avisos')->name('support.avisos');
-Route::view('/contactanos', 'pages.contactanos')->name('support.contact');
-Route::view('/legal', 'pages.legal')->name('support.legal');
-Route::view('/terminos', 'pages.terminos')->name('support.terminos');
+Route::view('/avisos', 'public.avisos')->name('avisos');
+Route::view('/contactanos', 'public.contactanos')->name('contact');
+Route::view('/legal', 'public.legal')->name('legal');
+Route::view('/terminos', 'public.terminos')->name('terminos');
 
 // ===== AUTENTICACIÓN =====
 Route::middleware('guest')->group(function () {
@@ -29,10 +29,9 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'login'])->name('login.post');
     Route::get('/registro', [RegisterController::class, 'show'])->name('register');
     Route::post('/registro', [RegisterController::class, 'store'])->name('register.store');
-    
+
     Route::get('/password/request', function () {
-        // Usar la vista de olvidar.html de StaySV
-        return view('olvidar');
+        return view('auth.forgot-password');
     })->name('password.request');
 });
 
@@ -42,7 +41,7 @@ Route::prefix('api')->group(function () {
     Route::get('/nacionalidades', [RegisterController::class, 'getNationalities']);
     Route::get('/estados-usa', [RegisterController::class, 'getStatesUSA']);
     Route::post('/sufijo-telefono', [RegisterController::class, 'getPhoneSuffix']);
-    
+
     // APIs para el dashboard
     //Route::get('/hoteles', [HotelController::class, 'index']);
     //Route::get('/servicios', [HotelController::class, 'getServicios']);
@@ -52,13 +51,13 @@ Route::prefix('api')->group(function () {
 // ===== RUTAS PROTEGIDAS =====
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', function () {
-        return view('auth.account.profile');
+        return view('public.profile.profile');
     })->name('perfil');
     Route::get('/reservation_history', function () {
-        return view('account.reservation_history');
+        return view('public.profile.reservations');
     })->name('reservation_history');
     Route::get('/reviews', function () {
-        return view('account.reviews');
+        return view('public.profile.reviews');
     })->name('reviews');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

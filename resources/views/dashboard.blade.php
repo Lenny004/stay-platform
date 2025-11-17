@@ -117,7 +117,7 @@
     <!-- Contenedor de tarjetas de hoteles -->
     <div class="cards-container" id="cards-container">
         {{-- Las tarjetas se cargarán dinámicamente con JavaScript --}}
-        @include('components.hotel-card-skeleton')
+        @include('components.public.hotel-card-skeleton')
     </div>
 </main>
 @endsection

@@ -1,0 +1,181 @@
+:root{
+    --dark-mode_bg: #262635;
+    --dark-mode_text: #e0e0e0;
+    --dark-mode_bg2: #3C3C53;
+    --yellow: #ffb64e;
+    --update: #D6F6FC;
+    --delete: #FF8B77;
+    --search: #607080;
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+.topnav{
+    margin: 2rem;
+    border-radius: var(--radius);
+}
+
+.navbar-right{
+    margin-right: 2rem;
+}
+
+/* Iconos */
+.sidenav {
+    width: 26rem;
+    min-width: 26rem;
+    max-width: 26rem;
+    height: 100vh;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: var(--shadow);
+    transition: var(--transition2);
+}
+
+/* Header */
+.sidenav-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 2rem;
+    flex-shrink: 0;
+}
+
+.sidenav-header .logo-img {
+    width: var(--img);
+    height: var(--img);
+    flex-shrink: 0;
+}
+
+.sidenav-header h1 {
+    font-size: var(--lg);
+    color: var(--blue);
+    font-weight: 700;
+}
+
+/* Lista */
+.sidenav-list {
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.sidenav-list li {
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    justify-content: center;
+}
+
+/* Label de sección */
+.sidenav-label {
+    display: block;
+    font-size: calc(var(--sm) / 1.5);
+    text-transform: uppercase;
+    color: var(--dark-gray);
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    padding-left: var(--lg);
+}
+
+/* Botones: ahora el <button> dentro del <li class="sidenav-button"> */
+.sidenav-button button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.2rem;
+    width: 90%;
+    border-radius: var(--radius);
+    padding: 1.2rem 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.sidenav-button button .icon {
+    width: var(--icons);
+    height: var(--icons);
+    min-width: var(--icons);
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.sidenav-button button .text {
+    color: var(--dark-gray);
+    font-size: var(--sm);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Hover */
+.sidenav-button:hover button {
+    background-color: var(--light-blue2);
+}
+
+.sidenav-button:hover button .text {
+    color: var(--blue);
+    font-weight: 600;
+}
+
+.sidenav-button{
+    border-right: var(--blue);
+}
+
+.sidenav-button.active {
+    border-right: 1rem solid var(--blue);
+}
+
+/* Estado activo */
+.sidenav-button.active button {
+    background-color: var(--light-blue);
+}
+
+.sidenav-button.active button .text {
+    color: var(--white);
+    font-weight: 700;
+}
+
+/* Última sección (logout) */
+.sidenav-list.sidenav-list--bottom {
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+/* Scrollbar personalizada */
+.sidenav::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidenav::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidenav::-webkit-scrollbar-thumb {
+    background: var(--dark-gray);
+    border-radius: 3px;
+    opacity: 0.5;
+}
+
+.sidenav::-webkit-scrollbar-thumb:hover {
+    background: var(--blue);
+}
+
+body.dark-theme, body.dark-theme html {
+    background-color: var(--dark-mode_bg);
+    color: var(--dark-mode_text);
+}
+
+body.dark-theme .topnav, body.dark-theme .sidenav {
+    background-color: var(--dark-mode_bg2);
+}

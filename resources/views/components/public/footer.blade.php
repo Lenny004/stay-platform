@@ -25,10 +25,10 @@
             <div class="support">
                 <h3>Asistencia</h3>
                 <ul>
-                    <li><a href="{{ route('support.avisos') }}">Avisos</a></li>
-                    <li><a href="{{ route('support.contact') }}">Contáctanos</a></li>
-                    <li><a href="{{ route('support.legal') }}">Información Legal</a></li>
-                    <li><a href="{{ route('support.terminos') }}">Términos y Condiciones</a></li>
+                    <li><a href="{{ route('avisos') }}">Avisos</a></li>
+                    <li><a href="{{ route('contact') }}">Contáctanos</a></li>
+                    <li><a href="{{ route('legal') }}">Información Legal</a></li>
+                    <li><a href="{{ route('terminos') }}">Términos y Condiciones</a></li>
                 </ul>
             </div>
             <div class="management">

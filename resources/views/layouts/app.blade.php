@@ -9,8 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user-authenticated" content="{{ auth()->check() ? 'true' : 'false' }}">
     <title>@yield('title', 'Stay SV')</title>
-    
+
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/public.css') }}">
     <link rel="stylesheet" href="{{ asset('css/desktop.css') }}" media="screen and (min-width: 1025px)">
     <link rel="stylesheet" href="{{ asset('css/tablet.css') }}" media="screen and (min-width: 769px) and (max-width: 1024px)">
     <link rel="stylesheet" href="{{ asset('css/mobile.css') }}" media="screen and (max-width: 768px)">
@@ -20,17 +21,17 @@
 
 <body>
     <div class="wrapper active">
-        @include('components.header')
+        @include('components.public.header')
 
         <!-- Capa de fondo oscurecido -->
         <div id="overlay" class="overlay" onclick="closeSidenav()"></div>
-        
+
         <!-- Sidenav -->
-        @include('components.sidenav')
+        @include('components.public.sidenav')
 
         @yield('content')
 
-        @include('components.footer')
+        @include('components.public.footer')
     </div>
 
     <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
