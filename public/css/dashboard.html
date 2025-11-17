@@ -22,14 +22,14 @@
             <ul class="sidenav-list">
                 <li class="sidenav-label">Home</li>
                 <li class="sidenav-button active" data-section="dashboard">
-                    <button>
-                        <img class="icon" src="../resources/icons/dashboard.png" alt="">
+                    <button type="button">
+                        <img class="icon icon--image" src="../resources/icons/dashboard.png" alt="">
                         <span class="text">Dashboard</span>
                     </button>
                 </li>
                 <li class="sidenav-button" data-section="profile">
-                    <button>
-                        <img class="icon" src="../resources/icons/profile_g.png" alt="">
+                    <button type="button">
+                        <img class="icon icon--image" src="../resources/icons/profile_g.png" alt="">
                         <span class="text">Configuración personal</span>
                     </button>
                 </li>
@@ -38,51 +38,162 @@
             <ul class="sidenav-list">
                 <li class="sidenav-label">Características</li>
                 <li class="sidenav-button" data-section="hotels">
-                    <button>
-                        <img class="icon" src="../resources/icons/hotel_g.png" alt="">
+                    <button type="button">
+                        <img class="icon icon--image" src="../resources/icons/hotel_g.png" alt="">
                         <span class="text">Hotel</span>
                     </button>
                 </li>
                 <li class="sidenav-button" data-section="room-types">
-                    <button>
-                        <img class="icon" src="../resources/icons/door_g.png" alt="">
+                    <button type="button">
+                        <img class="icon icon--image" src="../resources/icons/door_g.png" alt="">
                         <span class="text">Tipos de Habitaciones</span>
                     </button>
                 </li>
                 <li class="sidenav-button" data-section="rooms">
-                    <button>
-                        <img class="icon" src="../resources/icons/room_g.png" alt="">
+                    <button type="button">
+                        <img class="icon icon--image" src="../resources/icons/room_g.png" alt="">
                         <span class="text">Habitaciones</span>
                     </button>
                 </li>
             </ul>
 
             <ul class="sidenav-list">
-                <li class="sidenav-label">Settings</li>
-                <li class="sidenav-button" data-section="activities">
-                    <button>
-                        <img class="icon" src="../resources/icons/activities.png" alt="">
-                        <span class="text">Actividades</span>
+                <li class="sidenav-label">Configuraciones</li>
+                <li class="sidenav-button sidenav-accordion">
+                    <button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
+                        <img class="icon icon--image" src="../resources/icons/setting_user_g.png" alt="">
+                        <span class="text">Usuarios y Acceso</span>
+                        <span class="chevron" aria-hidden="true"></span>
                     </button>
+
+                    <ul class="sidenav-sublist" hidden>
+                        <li class="sidenav-button sidenav-button--child" data-section="foods">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Usuarios</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="hotel-status">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Estado de Hotel</span>
+                            </button>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sidenav-button" data-section="tags">
-                    <button>
-                        <img class="icon" src="../resources/icons/tags.png" alt="">
-                        <span class="text">Tags</span>
+                <li class="sidenav-button sidenav-accordion">
+                    <button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
+                        <img class="icon icon--image" src="../resources/icons/geography_g.png" alt="">
+                        <span class="text">Geograficos</span>
+                        <span class="chevron" aria-hidden="true"></span>
                     </button>
+
+                    <ul class="sidenav-sublist" hidden>
+                        <li class="sidenav-button sidenav-button--child" data-section="nacionalidades">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Nacionalidades</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="hotel-status">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Estados EE.UU</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="Departamentos">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Departamentos</span>
+                            </button>
+                        </li>
+                    </ul>
                 </li>
-                <li class="sidenav-button" data-section="services">
-                    <button>
-                        <img class="icon" src="../resources/icons/services.png" alt="">
-                        <span class="text">Servicios</span>
+                <li class="sidenav-button sidenav-accordion">
+                    <button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
+                        <img class="icon icon--image" src="../resources/icons/money_g.png" alt="">
+                        <span class="text">Financieros</span>
+                        <span class="chevron" aria-hidden="true"></span>
                     </button>
+
+                    <ul class="sidenav-sublist" hidden>
+                        <li class="sidenav-button sidenav-button--child" data-section="nacionalidades">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Divisas</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="hotel-status">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Estados de Pago</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="Departamentos">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Departamentos</span>
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidenav-button sidenav-accordion">
+                    <button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
+                        <img class="icon icon--image" src="../resources/icons/amenities_g.png" alt="">
+                        <span class="text">Amenidades</span>
+                        <span class="chevron" aria-hidden="true"></span>
+                    </button>
+
+                    <ul class="sidenav-sublist" hidden>
+                        <li class="sidenav-button sidenav-button--child" data-section="foods">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Comidas</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="payment-methods">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Métodos de pago</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="accommodation-types">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Tipos de alojamiento</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="nearby-areas">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Zonas cercanas</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="services">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Servicios</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="activities">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Actividades</span>
+                            </button>
+                        </li>
+                        <li class="sidenav-button sidenav-button--child" data-section="tags">
+                            <button type="button">
+                                <span class="icon icon--dot" aria-hidden="true"></span>
+                                <span class="text">Tags</span>
+                            </button>
+                        </li>
+                    </ul>
                 </li>
             </ul>
-
             <ul class="sidenav-list sidenav-list--bottom">
                 <li class="sidenav-label">Extra</li>
                 <li class="sidenav-button" data-section="logout">
-                    <button>
+                    <button type="button">
                         <span class="text">Cerrar sesión</span>
                     </button>
                 </li>
@@ -115,7 +226,8 @@
 
     <script>
         // Manejo de navegación
-        const sidenavButtons = document.querySelectorAll('.sidenav-button');
+        const sectionButtons = document.querySelectorAll('.sidenav-button[data-section]');
+        const accordionToggles = document.querySelectorAll('.sidenav-accordion-toggle');
         const sectionTitle = document.getElementById('section-title');
         const contentArea = document.getElementById('content-area');
 
@@ -128,36 +240,77 @@
             'activities': 'Actividades',
             'tags': 'Tags',
             'services': 'Servicios',
+            'foods': 'Comidas',
+            'payment-methods': 'Métodos de pago',
+            'accommodation-types': 'Tipos de alojamiento',
+            'nearby-areas': 'Zonas cercanas',
             'logout': 'Cerrar sesión'
         };
 
         // Función para actualizar iconos según estado activo
         function updateIcon(button) {
-            const img = button.querySelector('.icon');
+            const img = button.querySelector('.icon--image');
             if (!img) return;
 
             const isActive = button.classList.contains('active');
-            const base = img.src.replace(/_g\.png$/, '.png'); // limpia _g si existe
+            const base = img.dataset.base ?? img.src.replace(/_g\.png$/, '.png');
+            img.dataset.base = base;
 
             img.src = isActive ? base : base.replace('.png', '_g.png');
         }
 
-        sidenavButtons.forEach(button => {
-            button.addEventListener('click', function () {
+        function clearActiveButtons() {
+            sectionButtons.forEach(btn => {
+                btn.classList.remove('active');
+                updateIcon(btn);
+            });
+        }
+
+        function toggleAccordion(item, forceState) {
+            if (!item) return;
+
+            const toggle = item.querySelector('.sidenav-accordion-toggle');
+            const sublist = item.querySelector('.sidenav-sublist');
+            if (!toggle || !sublist) return;
+
+            const shouldExpand = typeof forceState === 'boolean' ? forceState : !item.classList.contains('expanded');
+
+            item.classList.toggle('expanded', shouldExpand);
+            toggle.setAttribute('aria-expanded', shouldExpand);
+            sublist.hidden = !shouldExpand;
+        }
+
+        accordionToggles.forEach(toggle => {
+            toggle.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const parentItem = toggle.closest('.sidenav-accordion');
+                toggleAccordion(parentItem);
+            });
+        });
+
+        sectionButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.stopPropagation();
                 const section = this.dataset.section;
+                if (!section) return;
 
                 // 1. Desactivar todos y poner iconos _g
-                sidenavButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    updateIcon(btn);
-                });
+                clearActiveButtons();
 
                 // 2. Activar el actual
                 this.classList.add('active');
                 updateIcon(this);
 
+                // 2.1 asegurar que el acordeón padre esté abierto
+                const parentAccordion = this.closest('.sidenav-accordion');
+                if (parentAccordion) {
+                    toggleAccordion(parentAccordion, true);
+                }
+
                 // 3. Actualizar título
-                sectionTitle.textContent = sectionTitles[section] ?? section;
+                if (sectionTitle) {
+                    sectionTitle.textContent = sectionTitles[section] ?? section;
+                }
 
                 // 4. Logout
                 if (section === 'logout') {
