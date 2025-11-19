@@ -155,14 +155,6 @@ nav {
     justify-content: space-between
 }
 
-nav h1 {
-    padding: 0 var(--lg)
-}
-
-input:not(.cur-year) {
-    width: 30rem
-}
-
 select:not(.flatpickr-monthDropdown-months) {
     appearance: none;
     background-color: #fff;
@@ -176,7 +168,6 @@ select:not(.flatpickr-monthDropdown-months) {
     cursor: pointer;
     font-family: var(--light);
     height: 4rem;
-    margin: .8rem 0 1.2rem;
     min-width: 20rem;
     padding: 1rem 30px 1rem 1.2rem;
     transition: all .3s ease-in-out;
@@ -185,8 +176,8 @@ select:not(.flatpickr-monthDropdown-months) {
 
 select:focus {
     border-color: var(--blue);
-    box-shadow: 0 0 0 .2rem rgba(226, 106, 46, .25);
-    outline: none
+    box-shadow: 0 0 0 .2rem rgba(46, 64, 226, 0.25);
+    outline: none;
 }
 
 .select--wrap {
@@ -219,6 +210,36 @@ select:focus {
     white-space: nowrap
 }
 
+.form-group {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1rem 0
+}
+
+.form-group input,
+textarea {
+    background-color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+    color: var(--blue);
+    font-family: var(--light);
+    font-size: var(--sm);
+    height: 4rem;
+    max-width: 30rem;
+    padding: 0 1rem;
+    width: 30rem
+}
+
+.form-group input:focus,
+textarea:focus {
+    border-color: var(--blue);
+    outline: none
+}
+
 .select--arrow {
     display: none
 }
@@ -245,7 +266,8 @@ select:focus {
     background-color: #f5f5f5
 }
 
-.navbar-left, .sidenav-header,
+.navbar-left,
+.sidenav-header,
 .navbar-left ul {
     align-items: center;
     display: flex
@@ -343,7 +365,8 @@ select:focus {
 }
 
 
-.primary-button {
+.primary-button,
+.toggle-btn {
     background: var(--btn);
     color: var(--blue)
 }
@@ -367,4 +390,167 @@ select:focus {
 .danger-button:hover {
     background-color: var(--light-red);
     color: var(--red) !important;
+}
+
+.profile-card {
+    width: 100%;
+    max-width: 650px;
+    height: auto;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    position: relative;
+    transition: var(--transition2);
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow2);
+}
+
+/*Profile*/
+.profile-card img.profile-avatar {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: var(--lg);
+    border: 5px solid var(--light-blue);
+}
+
+.profile-body {
+    padding: var(--lg);
+    text-align: center;
+}
+
+.profile-name {
+    font-size: var(--lg);
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.profile-title {
+    color: var(--light-blue);
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: inline-block;
+    position: relative;
+}
+
+.profile-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--light-blue);
+    transform: scaleX(0.2);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover .profile-title::after {
+    transform: scaleX(1);
+}
+
+.stats-container,
+.skills-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    flex: 1;
+    min-width: 80px;
+    padding: 10px;
+    transition: var(--transition2);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    position: relative;
+    display: inline-block;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tag {
+    padding: 6px 15px;
+    background: var(--gray);
+    border-radius: 20px;
+    font-size: var(--sm);
+    color: var(--dark-color);
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition2);
+}
+
+.tag:hover {
+    background: var(--btn);
+    transform: translateY(-3px);
+    font-family: var(--bold);
+}
+
+.tag img {
+    width: var(--icons);
+    height: var(--icons);
+    opacity: 0.7;
+    transition: var(--transition2);
+}
+
+.tag:hover img {
+    opacity: 1;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

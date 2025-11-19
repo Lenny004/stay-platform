@@ -7,22 +7,34 @@
     --search: #607080;
 }
 
-.dashboard-container {
-    display: flex;
-    height: 100%;
+body.dark-theme,
+body.dark-theme html {
+    background-color: var(--dark-mode_bg);
+    color: var(--dark-mode_text);
 }
 
-.user-icon img{
+body.dark-theme .topnav,
+body.dark-theme .sidenav {
+    background-color: var(--dark-mode_bg2);
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-icon img {
     cursor: pointer;
 }
 
 .topnav {
     margin: 2rem;
     border-radius: var(--radius);
+    padding: 0 2rem;
 }
 
-.navbar-right {
-    margin-right: 2rem;
+.navbar-left {
+    gap: 1.5rem;
 }
 
 /* Iconos */
@@ -230,15 +242,40 @@
     background: var(--blue);
 }
 
-body.dark-theme,
-body.dark-theme html {
-    background-color: var(--dark-mode_bg);
-    color: var(--dark-mode_text);
+.sidenav.collapsed {
+    display: flex;
+    width: 7rem;
+    min-width: 7rem;
+    max-width: 7rem;
 }
 
-body.dark-theme .topnav,
-body.dark-theme .sidenav {
-    background-color: var(--dark-mode_bg2);
+.sidenav.collapsed .sidenav-button button {
+    padding: 1.2rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.sidenav.collapsed .sidenav-button .text {
+    display: none;
+    opacity: 0;
+    /* Ocultar el texto y mostrar solo iconos */
+}
+
+.sidenav.collapsed .sidenav-label {
+    display: none;
+}
+
+.sidenav.collapsed .sidenav-header {
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.sidenav.collapsed .sidenav-header h1 {
+    display: none;
+}
+
+.sidenav.collapsed .sidenav-header .logo-img {
+    margin: 0 auto;
 }
 
 .content-area {
@@ -270,37 +307,48 @@ body.dark-theme .sidenav {
     justify-content: flex-end;
 }
 
-.actions{
+.actions {
     display: flex;
     gap: 0.5rem;
 }
 
-.btn--refresh, .btn--update, .btn--delete {
+.btn--refresh,
+.btn--update,
+.btn--delete,
+.toggle-btn {
     cursor: pointer;
-    padding: calc(var(--sm) / 2 );
+    padding: calc(var(--sm) / 2);
     border-radius: var(--radius);
     transition: var(--transition-speed);
 }
 
-.btn--refresh:hover, .btn--update:hover, .btn--delete:hover {
+.btn--refresh:hover,
+.btn--update:hover,
+.btn--delete:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow);
 }
 
-.btn--refresh{
+.btn--refresh {
     background-color: var(--search);
+    color: var(--white);
     padding: 0.8rem;
 }
 
-.btn--update{
+.btn--update {
     background-color: var(--light-blue);
+    color: var(--white);
 }
 
-.btn--delete{
+.btn--delete {
     background-color: var(--delete);
+    color: var(--white);
 }
 
-.btn--refresh img, .btn--update img, .btn--delete img {
+.btn--refresh img,
+.btn--update img,
+.btn--delete img,
+.toggle-btn img {
     width: var(--icons);
     height: var(--icons);
 }
@@ -308,6 +356,31 @@ body.dark-theme .sidenav {
 .primary-button:hover {
     background: var(--blue);
     color: var(--white);
+}
+
+.action-btn {
+    appearance: none;
+    border: none;
+}
+
+/*Formularios*/
+.hor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    align-items: start;
+    margin: 0;
+}
+
+.form-group input,
+textarea,
+select {
+    max-width: 20rem;
 }
 
 .select--search {
@@ -344,7 +417,7 @@ body.dark-theme .sidenav {
 }
 
 .table--container {
-    width: 100%;
+    margin: 0 auto;
     overflow: hidden;
     overflow-x: auto;
     background: var(--white);
@@ -384,7 +457,110 @@ thead {
     background-color: rgba(96, 112, 128, 0.12);
 }
 
+/* Estilos para el modal */
+.modal {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -60%);
+    transition: all 0.4s ease;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 70%;
+    max-width: 50rem;
+    max-height: 80vh;
+    overflow: hidden;
+    padding: var(--md);
+    box-shadow: var(--shadow);
+    border: none;
+    border-radius: var(--radius);
+    background-color: var(--white);
+    z-index: 5;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+}
+
+.modal-sm {
+    min-width: 30%;
+}
+
+/* Fondo oscuro */
+.modal-overlay {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 4;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gray);
+    margin-bottom: var(--sm);
+}
+
+.modal>.modal__header img {
+    width: var(--icons);
+}
+
+.modal>.modal__header span {
+    cursor: pointer;
+}
+
+
+.modal>form.modal__content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: var(--sm);
+    font-size: var(--sm);
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.modal>form>.modal__section {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+/* Action buttons */
+.modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    padding: 2rem 0 1rem;
+    width: 100%;
+    border-top: 1px solid var(--gray);
+    flex-shrink: 0;
+}
+
 @media (max-width: 768px) {
+    .main-content {
+        width: 100%;
+    }
+
     .content-actions {
         flex-direction: column;
         align-items: stretch;
@@ -404,11 +580,48 @@ thead {
     }
 
     .table--container {
+        width: 100%;
         border-radius: calc(var(--radius) / 1.5);
     }
 
     .data-table {
         min-width: 100%;
     }
-}
 
+    .sidenav {
+        display: none;
+        z-index: 5;
+    }
+
+    .sidenav.collapsed {
+        display: block;
+        position: fixed;
+        top: 0;
+    }
+
+    .sidenav.collapsed .sidenav-button .text {
+        display: flex;
+        opacity: 1;
+        /* Ocultar el texto y mostrar solo iconos */
+    }
+
+    .sidenav.collapsed {
+        display: flex;
+        width: 26rem;
+        min-width: 26rem;
+        max-width: 26rem;
+    }
+
+    .sidenav.collapsed .sidenav-button button {
+        justify-content: flex-start;
+        width: 90%;
+    }
+
+    .sidenav.collapsed .sidenav-header .logo-img {
+        margin: auto;
+    }
+
+    .sidenav.collapsed .sidenav-header h1 {
+        display: flex;
+    }
+}

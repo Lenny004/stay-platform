@@ -310,144 +310,50 @@
             </nav>
 
             <!-- Content Area -->
-            <section class="content-area" id="content-area">
-                <div class="content-actions">
-                    <form class="content-actions__search">
-                        <div class="select--search">
-                            <input type="text" placeholder="Buscar..." id="search">
-                            <img class="select--searchIcon" src="../resources/icons/search.png" alt="search">
+            <div class="profile-card">
+                <img class="profile-avatar"
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80"
+                    alt="Sophia Chen">
+
+                <div class="profile-body">
+                    <h3 class="profile-name">Sophia Chen</h3>
+                    <span class="profile-title">El Salvador</span>
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-value">100</div>
+                            <div class="stat-label">Comentarios</div>
                         </div>
-                        <a class="btn--refresh"><img src="../resources/icons/reset.png" alt="reset"></a>
-                    </form>
-                    <div class="content-actions__add">
-                        <a class="btn primary-button" onclick="openModal()">Agregar</a>
+                        <div class="stat-item">
+                            <div class="stat-value">21</div>
+                            <div class="stat-label">Reservas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Años</div>
+                        </div>
+                    </div>
+
+                    <div class="skills-container">
+                        <div class="tag">
+                            <img src="../resources/icons/verificado.png" alt="">
+                            JavaScript
+                        </div>
+                        <div class="tag">
+                            <img src="../resources/icons/star_perfil.png" alt="">Gran Visitante
+                        </div>
+                    </div>
+                    <div class="modal__actions">
+                        <button class="btn btn--refresh action-btn">
+                            Editar Perfil
+                        </button>
+                        <button class="btn primary-button action-btn">
+                            Cambiar Contraseña
+                        </button>
                     </div>
                 </div>
-                <div class="table--container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Name</th>
-                                <th>Time</th>
-                                <th>Name</th>
-                                <th>ID</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Like a butterfly</td>
-                                <td>Boxing</td>
-                                <td>9:00 AM - 11:00 AM</td>
-                                <td>Aaron Chapman</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
+            </div>
+            <section class="content-area" id="content-area">
 
-                            <tr>
-                                <td>Mind &amp; Body</td>
-                                <td>Yoga</td>
-                                <td>8:00 AM - 9:00 AM</td>
-                                <td>Adam Stewart</td>
-                                <td>15</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Crit Cardio</td>
-                                <td>Gym</td>
-                                <td>9:00 AM - 10:00 AM</td>
-                                <td>Aaron Chapman</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Wheel Pose Full Posture</td>
-                                <td>Yoga</td>
-                                <td>7:00 AM - 8:30 AM</td>
-                                <td>Donna Wilson</td>
-                                <td>15</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Playful Dancer's Flow</td>
-                                <td>Yoga</td>
-                                <td>8:00 AM - 9:00 AM</td>
-                                <td>Donna Wilson</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Zumba Dance</td>
-                                <td>Dance</td>
-                                <td>5:00 PM - 7:00 PM</td>
-                                <td>Donna Wilson</td>
-                                <td>20</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cardio Blast</td>
-                                <td>Gym</td>
-                                <td>5:00 PM - 7:00 PM</td>
-                                <td>Randy Porter</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Pilates Reformer</td>
-                                <td>Gym</td>
-                                <td>8:00 AM - 9:00 AM</td>
-                                <td>Randy Porter</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </section>
         </main>
     </div>

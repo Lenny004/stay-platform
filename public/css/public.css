@@ -97,6 +97,9 @@ html{
     display: inline-flex
 }
 
+input:not(.cur-year) {
+    width: 30rem
+}
 
 .select--popup {
     background: #fff;
@@ -489,36 +492,6 @@ footer {
     color: var(--blue);
     font-size: var(--sm);
     margin-bottom: .5rem
-}
-
-.form-group {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 1rem 0
-}
-
-.form-group input,
-textarea {
-    background-color: var(--gray);
-    border: none;
-    border-radius: 1rem;
-    box-shadow: var(--shadow);
-    box-sizing: border-box;
-    color: var(--blue);
-    font-family: var(--light);
-    font-size: var(--sm);
-    height: 4rem;
-    max-width: 30rem;
-    padding: 0 1rem;
-    width: 30rem
-}
-
-.form-group input:focus,
-textarea:focus {
-    border-color: var(--blue);
-    outline: none
 }
 
 .btn-login {
