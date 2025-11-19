@@ -1,614 +1,69 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.admin')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Gestión de Hoteles</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="private.css">
-    <link rel="stylesheet" href="fuente.css">
-</head>
+@section('title', 'Dashboard - Administración')
+@section('page-title', 'Dashboard')
 
-<body>
-    <div class="dashboard-container">
-        <!-- Side Navigation -->
-        <nav class="sidenav" id="sidenav">
-            <div class="sidenav-header">
-                <img class="logo-img" src="../resources/imgs/stay_logo.png" alt="logo">
-                <h1>STAY SV</h1>
+@php
+    $bookings = [
+        ['name' => 'Like a butterfly', 'category' => 'Boxing', 'schedule' => '09:00 - 11:00', 'manager' => 'Aaron Chapman', 'code' => 'H-001'],
+        ['name' => 'Mind & Body', 'category' => 'Yoga', 'schedule' => '08:00 - 09:00', 'manager' => 'Adam Stewart', 'code' => 'H-002'],
+        ['name' => 'Crit Cardio', 'category' => 'Gimnasio', 'schedule' => '09:00 - 10:00', 'manager' => 'Aaron Chapman', 'code' => 'H-003'],
+        ['name' => 'Wheel Pose Full Posture', 'category' => 'Yoga', 'schedule' => '07:00 - 08:30', 'manager' => 'Donna Wilson', 'code' => 'H-004'],
+        ['name' => 'Zumba Dance', 'category' => 'Baile', 'schedule' => '17:00 - 19:00', 'manager' => 'Donna Wilson', 'code' => 'H-005'],
+        ['name' => 'Cardio Blast', 'category' => 'Gimnasio', 'schedule' => '17:00 - 19:00', 'manager' => 'Randy Porter', 'code' => 'H-006'],
+        ['name' => 'Pilates Reformer', 'category' => 'Gimnasio', 'schedule' => '08:00 - 09:00', 'manager' => 'Randy Porter', 'code' => 'H-007'],
+    ];
+@endphp
+
+@section('content')
+    <div class="content-actions">
+        <form class="content-actions__search" id="dashboard-search-form">
+            <div class="select--search">
+                <input type="text" placeholder="Buscar..." id="search">
+                <img class="select--searchIcon" src="{{ asset('resources/icons/search.png') }}" alt="Buscar">
             </div>
-            <ul class="sidenav-list">
-                <li class="sidenav-label">Home</li>
-                <li class="sidenav-button active" data-section="dashboard">
-                    <button type="button">
-                        <img class="icon icon--image" src="../resources/icons/dashboard.png" alt="">
-                        <span class="text">Dashboard</span>
-                    </button>
-                </li>
-                <li class="sidenav-button" data-section="profile">
-                    <button type="button">
-                        <img class="icon icon--image" src="../resources/icons/profile_g.png" alt="">
-                        <span class="text">Configuración personal</span>
-                    </button>
-                </li>
-            </ul>
-            <ul class="sidenav-list">
-                <li class="sidenav-label">Características</li>
-                <li class="sidenav-button" data-section="hotels">
-                    <button type="button">
-                        <img class="icon icon--image" src="../resources/icons/hotel_g.png" alt="">
-                        <span class="text">Hotel</span>
-                    </button>
-                </li>
-                <li class="sidenav-button" data-section="room-types">
-                    <button type="button">
-                        <img class="icon icon--image" src="../resources/icons/door_g.png" alt="">
-                        <span class="text">Tipos de Habitaciones</span>
-                    </button>
-                </li>
-                <li class="sidenav-button" data-section="rooms">
-                    <button type="button">
-                        <img class="icon icon--image" src="../resources/icons/room_g.png" alt="">
-                        <span class="text">Habitaciones</span>
-                    </button>
-                </li>
-            </ul>
-
-            <ul class="sidenav-list">
-                <li class="sidenav-label">Configuraciones</li>
-                <li class="sidenav-button sidenav-accordion">
-                    <button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
-                        <img class="icon icon--image" src="../resources/icons/setting_user_g.png" alt="">
-                        <span class="text">Usuarios y Acceso</span>
-                        <span class="chevron" aria-hidden="true"></span>
-                    </button>
-
-                    <ul class="sidenav-sublist" hidden>
-                        <li class="sidenav-button sidenav-button--child" data-section="foods">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/user_g.png" alt="">
-                                <span class="text">Usuarios</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="hotel-status">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/status_h_g.png" alt="">
-                                <span class="text">Estado de Hotel</span>
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidenav-button sidenav-accordion">
-                    <button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
-                        <img class="icon icon--image" src="../resources/icons/geography_g.png" alt="">
-                        <span class="text">Geograficos</span>
-                        <span class="chevron" aria-hidden="true"></span>
-                    </button>
-
-                    <ul class="sidenav-sublist" hidden>
-                        <li class="sidenav-button sidenav-button--child" data-section="nacionalidades">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/passport_g.png" alt="">
-                                <span class="text">Nacionalidades</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="hotel-status">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/place_g.png" alt="">
-                                <span class="text">Estados EE.UU</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="Departamentos">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/place_g.png" alt="">
-                                <span class="text">Departamentos</span>
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidenav-button sidenav-accordion">
-                    <button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
-                        <img class="icon icon--image" src="../resources/icons/money_g.png" alt="">
-                        <span class="text">Financieros</span>
-                        <span class="chevron" aria-hidden="true"></span>
-                    </button>
-
-                    <ul class="sidenav-sublist" hidden>
-                        <li class="sidenav-button sidenav-button--child" data-section="nacionalidades">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/divisa_g.png" alt="">
-                                <span class="text">Divisas</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="hotel-status">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/status_payment_g.png" alt="">
-                                <span class="text">Estados de Pago</span>
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidenav-button sidenav-accordion">
-                    <button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
-                        <img class="icon icon--image" src="../resources/icons/amenities_g.png" alt="">
-                        <span class="text">Amenidades</span>
-                        <span class="chevron" aria-hidden="true"></span>
-                    </button>
-
-                    <ul class="sidenav-sublist" hidden>
-                        <li class="sidenav-button sidenav-button--child" data-section="foods">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/food_g.png" alt="">
-                                <span class="text">Comidas</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="payment-methods">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/paymethod_g.png" alt="">
-                                <span class="text">Métodos de pago</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="accommodation-types">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/booking_g.png" alt="">
-                                <span class="text">Tipos de alojamiento</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="nearby-areas">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/near_g.png" alt="">
-                                <span class="text">Zonas cercanas</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="services">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/service_g.png" alt="">
-                                <span class="text">Servicios</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="activities">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/activity_g.png" alt="">
-                                <span class="text">Actividades</span>
-                            </button>
-                        </li>
-                        <li class="sidenav-button sidenav-button--child" data-section="tags">
-                            <button type="button">
-                                <img class="icon icon--image" src="../resources/icons/tag_g.png" alt="">
-                                <span class="text">Tags</span>
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="sidenav-list">
-                <li class="sidenav-label">Extra</li>
-                <li class="sidenav-button" data-section="logout">
-                    <button type="button">
-                        <img class="icon icon--image" src="../resources/icons/exit_g.png" alt="">
-                        <span class="text">Cerrar sesión</span>
-                    </button>
-                </li>
-            </ul>
-        </nav>
-        <div id="modal-overlay" class="modal-overlay" onclick="closeSidenav()"></div>
-        <div class="modal modal-sm" id="modal">
-            <div class="modal__header hor">
-                <h1 id="modal__header--title">Enviar mensaje</h1>
-                <span class="icon" onclick="closeModal()"><img src="../resources/icons/close.png" alt="close"></span>
-            </div>
-            <form method="post" class="modal__content" autocomplete="off">
-                <div class="modal__section hor">
-                    <div class="form-group">
-                        <label for="receiver">Para:</label>
-                        <select type="text" id="receiver" name="receiver" required>
-                            <option value="" disabled selected>Seleccione un usuario</option>
-                            <option value="user1">Usuario 1</option>
-                            <option value="user2">Usuario 2</option>
-                            <option value="user3">Usuario 3</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                    <div class="form-group">
-                        <label for="office">Nombre oficina:</label>
-                        <input type="text" name="office" id="office" maxlength="20" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Localidad:</label>
-                        <input type="text" name="location" id="location" maxlength="25">
-                    </div>
-                </div>
-                <div class="modal__actions">
-                    <input type="button" class="btn btn--refresh action-btn" onclick="closeModal()" value="Cancelar">
-                    <input type="submit" class="btn primary-button action-btn" id="modal__actions--button"
-                        value="Enviar">
-                </div>
-            </form>
+            <a class="btn--refresh" id="refresh-table" title="Restablecer filtros">
+                <img src="{{ asset('resources/icons/reset.png') }}" alt="Restablecer">
+            </a>
+        </form>
+        <div class="content-actions__add">
+            <a class="btn primary-button" data-open-modal>Agregar</a>
         </div>
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Top Navigation -->
-            <nav class="topnav">
-                <div class="navbar-left">
-                    <div class="toggle-btn" id="menu-toggle" onclick="openMenu()">
-                        <img src="../resources/icons/menu.png" alt="menu">
-                    </div>
-                    <h1>Dashboard</h1>
-                </div>
-                <div class="navbar-right">
-                    <a href="#" id="theme-toggle-link">
-                        <img id="theme-icon" src="../resources/icons/sun.png" alt="change_color">
-                    </a>
-                    <a class="user-icon">
-                        <img src="../resources/imgs/user.jpg" alt="user">
-                    </a>
-                </div>
-            </nav>
-
-            <!-- Content Area -->
-            <section class="content-area" id="content-area">
-                <div class="content-actions">
-                    <form class="content-actions__search">
-                        <div class="select--search">
-                            <input type="text" placeholder="Buscar..." id="search">
-                            <img class="select--searchIcon" src="../resources/icons/search.png" alt="search">
-                        </div>
-                        <a class="btn--refresh"><img src="../resources/icons/reset.png" alt="reset"></a>
-                    </form>
-                    <div class="content-actions__add">
-                        <a class="btn primary-button" onclick="openModal()">Agregar</a>
-                    </div>
-                </div>
-                <div class="table--container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Name</th>
-                                <th>Time</th>
-                                <th>Name</th>
-                                <th>ID</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Like a butterfly</td>
-                                <td>Boxing</td>
-                                <td>9:00 AM - 11:00 AM</td>
-                                <td>Aaron Chapman</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Mind &amp; Body</td>
-                                <td>Yoga</td>
-                                <td>8:00 AM - 9:00 AM</td>
-                                <td>Adam Stewart</td>
-                                <td>15</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Crit Cardio</td>
-                                <td>Gym</td>
-                                <td>9:00 AM - 10:00 AM</td>
-                                <td>Aaron Chapman</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Wheel Pose Full Posture</td>
-                                <td>Yoga</td>
-                                <td>7:00 AM - 8:30 AM</td>
-                                <td>Donna Wilson</td>
-                                <td>15</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Playful Dancer's Flow</td>
-                                <td>Yoga</td>
-                                <td>8:00 AM - 9:00 AM</td>
-                                <td>Donna Wilson</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Zumba Dance</td>
-                                <td>Dance</td>
-                                <td>5:00 PM - 7:00 PM</td>
-                                <td>Donna Wilson</td>
-                                <td>20</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Cardio Blast</td>
-                                <td>Gym</td>
-                                <td>5:00 PM - 7:00 PM</td>
-                                <td>Randy Porter</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Pilates Reformer</td>
-                                <td>Gym</td>
-                                <td>8:00 AM - 9:00 AM</td>
-                                <td>Randy Porter</td>
-                                <td>10</td>
-                                <td>
-                                    <div class="actions">
-                                        <a class="btn--update"><img src="../resources/icons/edit.png" alt=""></a>
-                                        <a class="btn--delete"><img src="../resources/icons/delete.png" alt=""></a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
     </div>
 
-    <script>
-        // Manejo de navegación
-        const sectionButtons = document.querySelectorAll('.sidenav-button[data-section]');
-        const accordionToggles = document.querySelectorAll('.sidenav-accordion-toggle');
-        const sectionTitle = document.getElementById('section-title');
-        const contentArea = document.getElementById('content-area');
-
-        const sectionTitles = {
-            'dashboard': 'Dashboard',
-            'profile': 'Configuración personal',
-            'hotels': 'Hotel',
-            'room-types': 'Tipos de Habitaciones',
-            'rooms': 'Habitaciones',
-            'activities': 'Actividades',
-            'tags': 'Tags',
-            'services': 'Servicios',
-            'foods': 'Comidas',
-            'payment-methods': 'Métodos de pago',
-            'accommodation-types': 'Tipos de alojamiento',
-            'nearby-areas': 'Zonas cercanas',
-            'logout': 'Cerrar sesión'
-        };
-
-        // Función para actualizar iconos según estado activo
-        function updateIcon(button) {
-            const img = button.querySelector('.icon--image');
-            if (!img) return;
-
-            const isActive = button.classList.contains('active');
-            const base = img.dataset.base ?? img.src.replace(/_g\.png$/, '.png');
-            img.dataset.base = base;
-
-            img.src = isActive ? base : base.replace('.png', '_g.png');
-        }
-
-        function clearActiveButtons() {
-            sectionButtons.forEach(btn => {
-                btn.classList.remove('active');
-                updateIcon(btn);
-            });
-        }
-
-        function toggleAccordion(item, forceState) {
-            if (!item) return;
-
-            const toggle = item.querySelector('.sidenav-accordion-toggle');
-            const sublist = item.querySelector('.sidenav-sublist');
-            if (!toggle || !sublist) return;
-
-            const shouldExpand = typeof forceState === 'boolean' ? forceState : !item.classList.contains('expanded');
-
-            item.classList.toggle('expanded', shouldExpand);
-            toggle.setAttribute('aria-expanded', shouldExpand);
-            sublist.hidden = !shouldExpand;
-        }
-
-        accordionToggles.forEach(toggle => {
-            toggle.addEventListener('click', (event) => {
-                event.stopPropagation();
-                const parentItem = toggle.closest('.sidenav-accordion');
-                toggleAccordion(parentItem);
-            });
-        });
-
-        sectionButtons.forEach(button => {
-            button.addEventListener('click', function (event) {
-                event.stopPropagation();
-                const section = this.dataset.section;
-                if (!section) return;
-
-                // 1. Desactivar todos y poner iconos _g
-                clearActiveButtons();
-
-                // 2. Activar el actual
-                this.classList.add('active');
-                updateIcon(this);
-
-                // 2.1 asegurar que el acordeón padre esté abierto
-                const parentAccordion = this.closest('.sidenav-accordion');
-                if (parentAccordion) {
-                    toggleAccordion(parentAccordion, true);
-                }
-
-                // 3. Actualizar título
-                if (sectionTitle) {
-                    sectionTitle.textContent = sectionTitles[section] ?? section;
-                }
-
-                // 4. Logout
-                if (section === 'logout') {
-                    console.log('Cerrando sesión...');
-                    // window.location.href = '/logout';
-                }
-            });
-        });
-
-        // ---------- TEMA CON ICONO SUN/MOON + LOCALSTORAGE ----------
-        const themeToggleLink = document.getElementById('theme-toggle-link');
-        const themeIcon = document.getElementById('theme-icon');
-
-        const applyTheme = (theme) => {
-            if (theme === 'dark') {
-                document.body.classList.add('dark-theme');
-                themeIcon.src = '../resources/icons/moon.png';
-            } else {
-                document.body.classList.remove('dark-theme');
-                themeIcon.src = '../resources/icons/sun.png';
-            }
-        };
-
-        // Al cargar: restaurar tema guardado (o claro por defecto)
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        applyTheme(savedTheme);
-
-        // Alternar tema al hacer clic
-        themeToggleLink.addEventListener('click', (e) => {
-            e.preventDefault(); // evita salto #
-            const currentTheme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-            applyTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-
-        async function openModal() {
-            const modal = document.getElementById("modal");
-            const modalOverlay = document.getElementById("modal-overlay");
-            if (modalOverlay && modal) {
-                modal.classList.add("show");
-                modalOverlay.classList.add("show");
-            }
-        }
-
-        function closeModal() {
-            const modal = document.getElementById("modal");
-            const modalOverlay = document.getElementById("modal-overlay");
-            modal.classList.remove("show");
-            modalOverlay.classList.remove("show");
-        }
-
-        function openMenu() {
-            const isMobile = window.innerWidth <= 768; // Determina si la pantalla es móvil o no
-            const sidenav = document.getElementById('sidenav');
-            if (isMobile) {
-                sidenav.classList.toggle('collapsed');
-                document.getElementById('modal-overlay').classList.add('show');
-            } else {
-                sidenav.classList.toggle('collapsed');
-            }
-        }
-
-        function closeSidenav() {
-            // Cerrar el sidenav cuando se haga clic en el botón de cierre
-            document.getElementById('sidenav').classList.remove('collapsed');
-            document.getElementById('modal-overlay').classList.remove('show');
-        }
-    </script>
-</body>
-
-</html>
+    <div class="table--container">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Actividad</th>
+                    <th>Categoría</th>
+                    <th>Horario</th>
+                    <th>Encargado</th>
+                    <th>Código</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($bookings as $row)
+                    <tr>
+                        <td>{{ $row['name'] }}</td>
+                        <td>{{ $row['category'] }}</td>
+                        <td>{{ $row['schedule'] }}</td>
+                        <td>{{ $row['manager'] }}</td>
+                        <td>{{ $row['code'] }}</td>
+                        <td>
+                            <div class="actions">
+                                <a class="btn--update" title="Editar">
+                                    <img src="{{ asset('resources/icons/edit.png') }}" alt="Editar">
+                                </a>
+                                <a class="btn--delete" title="Eliminar">
+                                    <img src="{{ asset('resources/icons/delete.png') }}" alt="Eliminar">
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection

@@ -48,6 +48,11 @@ Route::prefix('api')->group(function () {
     //Route::get('/actividades', [HotelController::class, 'getActividades']);
 });
 
+// ===== ADMINISTRACIÓN =====
+Route::middleware(['auth', 'admin.access'])->prefix('admin')->as('admin.')->group(function () {
+    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+});
+
 // ===== RUTAS PROTEGIDAS =====
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', function () {

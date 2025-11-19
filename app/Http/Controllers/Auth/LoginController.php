@@ -25,9 +25,8 @@ class LoginController extends Controller
         ]);
 
         // Buscar usuario por username
-        $user = User::where('username', $request->user)
-                    ->where('user_type_id', 2) // Solo clientes
-                    ->first();
+        $user = User::where('username', $request->user)->first();
+
         // Verificar si existe y la contraseña es correcta
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
@@ -35,13 +34,19 @@ class LoginController extends Controller
                 'exception' => 'El usuario o la contraseña ingresados no son válidos'
             ]);
         }
-        
+
         // Login exitoso
         Auth::login($user);
+        $request->session()->regenerate();
+
+        $redirect = (int) $user->user_type_id === 3
+            ? $this->buildRedirectPath($request)
+            : $this->buildRedirectPath($request, 'admin/dashboard');
+
         return response()->json([
             'estado' => 1,
             'message' => 'Credenciales correctas',
-            'redirect' => route('dashboard.public')
+            'redirect' => $redirect
         ]);
     }
 
@@ -57,4 +62,17 @@ class LoginController extends Controller
             'message' => 'Sesión cerrada exitosamente'
         ]);
     }
+
+    private function buildRedirectPath(Request $request, string $path = ''): string
+    {
+        $base = rtrim($request->getBaseUrl(), '/');
+        $cleanPath = ltrim($path, '/');
+
+        if ($cleanPath === '') {
+            return $base === '' ? '/' : $base . '/';
+        }
+
+        return ($base === '' ? '' : $base . '/') . $cleanPath;
+    }
+
 }

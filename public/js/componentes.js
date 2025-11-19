@@ -219,6 +219,17 @@ function sweetAlert(type, text, url, position, timer) {
             htmlContainer: 'toast-content-font'
         }
     };
+    if (typeof Swal === 'undefined') {
+        if (url) {
+            window.location.href = url;
+            return;
+        }
+
+        const fallbackTitle = title ? title + ': ' : '';
+        window.alert(fallbackTitle + (text || ''));
+        return;
+    }
+
     // Si existe una ruta definida, se añade el evento para redireccionar después del toast
     if (url) {
         toastConfig.didClose = function () {

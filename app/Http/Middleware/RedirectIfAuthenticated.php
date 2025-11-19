@@ -23,10 +23,27 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                $user = Auth::guard($guard)->user();
+                if ($user && (int) $user->user_type_id !== 3) {
+                    return redirect($this->buildPath($request, 'admin/dashboard'));
+                }
+
+                return redirect($this->buildPath($request));
             }
         }
 
         return $next($request);
+    }
+
+    private function buildPath(Request $request, string $path = ''): string
+    {
+        $base = rtrim($request->getBaseUrl(), '/');
+        $cleanPath = ltrim($path, '/');
+
+        if ($cleanPath === '') {
+            return $base === '' ? '/' : $base . '/';
+        }
+
+        return ($base === '' ? '' : $base . '/') . $cleanPath;
     }
 }

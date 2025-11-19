@@ -23,9 +23,21 @@ class EnsureUserIsNotClient
                 ], 403);
             }
 
-            return redirect()->route('dashboard.public');
+            return redirect($this->buildPath($request));
         }
 
         return $next($request);
+    }
+
+    private function buildPath(Request $request, string $path = ''): string
+    {
+        $base = rtrim($request->getBaseUrl(), '/');
+        $cleanPath = ltrim($path, '/');
+
+        if ($cleanPath === '') {
+            return $base === '' ? '/' : $base . '/';
+        }
+
+        return ($base === '' ? '' : $base . '/') . $cleanPath;
     }
 }

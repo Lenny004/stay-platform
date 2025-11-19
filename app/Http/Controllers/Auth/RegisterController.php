@@ -34,13 +34,13 @@ class RegisterController extends Controller
                 'currency_id' => $request->divisa,
                 'nationality_id' => $request->id_nacionalidad,
                 'us_state_id' => $request->id_state,
-                'user_type_id' => 2, // Cliente por defecto
+                'user_type_id' => 3, // Cliente por defecto
             ]);
 
             return response()->json([
                 'estado' => 1,
                 'message' => 'Usuario registrado correctamente',
-                'redirect' => route('login')
+                'redirect' => $this->buildRedirectPath($request, 'login')
             ]);
 
         } catch (\Exception $e) {
@@ -140,5 +140,17 @@ class RegisterController extends Controller
                 'exception' => 'Error al obtener sufijo'
             ]);
         }
+    }
+
+    private function buildRedirectPath(Request $request, string $path = ''): string
+    {
+        $base = rtrim($request->getBaseUrl(), '/');
+        $cleanPath = ltrim($path, '/');
+
+        if ($cleanPath === '') {
+            return $base === '' ? '/' : $base . '/';
+        }
+
+        return ($base === '' ? '' : $base . '/') . $cleanPath;
     }
 }
