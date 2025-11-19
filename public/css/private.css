@@ -287,6 +287,13 @@ body.dark-theme .sidenav {
     padding: var(--lg);
 }
 
+.content-area.booking {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(28rem, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
 .content-actions {
     display: flex;
     flex-wrap: wrap;
@@ -623,5 +630,21 @@ thead {
 
     .sidenav.collapsed .sidenav-header h1 {
         display: flex;
+    }
+}
+
+@media (max-width: 900px) {
+    .content-area.booking {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 320px) and (min-width: 200px) {
+    .profile-card {
+        max-width: 28rem;
+    }
+
+    .stats-container, .skills-container{
+        gap: var(--sm);
     }
 }

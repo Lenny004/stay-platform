@@ -20,3 +20,7 @@ b nav {
     flex-wrap: nowrap;
     justify-content: center
 }
+
+.profile-card {
+    max-width: 365px;
+}
