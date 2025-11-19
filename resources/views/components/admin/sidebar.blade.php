@@ -1,5 +1,17 @@
 @php
 	$asset = fn (string $path) => asset('resources/icons/' . $path);
+	$userAccessActive = request()->routeIs('admin.settings.user-types.*', 'admin.settings.hotel-status.*');
+	$geographicActive = request()->routeIs('admin.settings.nationalities.*', 'admin.settings.us-states.*', 'admin.settings.departments.*');
+	$financialActive = request()->routeIs('admin.settings.currencies.*', 'admin.settings.payment-status.*');
+	$amenitiesActive = request()->routeIs(
+		'admin.settings.foods.*',
+		'admin.settings.payment-methods.*',
+		'admin.settings.accommodation-types.*',
+		'admin.settings.nearby-areas.*',
+		'admin.settings.services.*',
+		'admin.settings.activities.*',
+		'admin.settings.tags.*'
+	);
 @endphp
 
 <nav class="sidenav" id="sidenav">
@@ -11,7 +23,7 @@
 	<ul class="sidenav-list">
 		<li class="sidenav-label">Home</li>
 		<li class="sidenav-button {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" data-section="dashboard">
-			<button type="button">
+			<button type="button" data-url="{{ route('admin.dashboard') }}">
 				<img class="icon icon--image"
 					src="{{ $asset('dashboard.png') }}"
 					data-icon-active="{{ $asset('dashboard.png') }}"
@@ -69,8 +81,8 @@
 	<ul class="sidenav-list">
 		<li class="sidenav-label">Configuraciones</li>
 
-		<li class="sidenav-button sidenav-accordion">
-			<button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
+		<li class="sidenav-button sidenav-accordion {{ $userAccessActive ? 'expanded' : '' }}">
+			<button type="button" class="sidenav-accordion-toggle" aria-expanded="{{ $userAccessActive ? 'true' : 'false' }}">
 				<img class="icon icon--image"
 					src="{{ $asset('setting_user_g.png') }}"
 					data-icon-active="{{ $asset('setting_user.png') }}"
@@ -79,9 +91,9 @@
 				<span class="text">Usuarios y Acceso</span>
 				<span class="chevron" aria-hidden="true"></span>
 			</button>
-			<ul class="sidenav-sublist" hidden>
-				<li class="sidenav-button sidenav-button--child" data-section="users">
-					<button type="button">
+			<ul class="sidenav-sublist" {{ $userAccessActive ? '' : 'hidden' }}>
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.user-types.*') ? 'active' : '' }}" data-section="user-types">
+					<button type="button" data-url="{{ route('admin.settings.user-types.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('user_g.png') }}"
 							data-icon-active="{{ $asset('user.png') }}"
@@ -90,8 +102,8 @@
 						<span class="text">Usuarios</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="hotel-status">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.hotel-status.*') ? 'active' : '' }}" data-section="hotel-status">
+					<button type="button" data-url="{{ route('admin.settings.hotel-status.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('status_h_g.png') }}"
 							data-icon-active="{{ $asset('status_h.png') }}"
@@ -103,8 +115,8 @@
 			</ul>
 		</li>
 
-		<li class="sidenav-button sidenav-accordion">
-			<button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
+		<li class="sidenav-button sidenav-accordion {{ $geographicActive ? 'expanded' : '' }}">
+			<button type="button" class="sidenav-accordion-toggle" aria-expanded="{{ $geographicActive ? 'true' : 'false' }}">
 				<img class="icon icon--image"
 					src="{{ $asset('geography_g.png') }}"
 					data-icon-active="{{ $asset('geography.png') }}"
@@ -113,9 +125,9 @@
 				<span class="text">Geográficos</span>
 				<span class="chevron" aria-hidden="true"></span>
 			</button>
-			<ul class="sidenav-sublist" hidden>
-				<li class="sidenav-button sidenav-button--child" data-section="nationalities">
-					<button type="button">
+			<ul class="sidenav-sublist" {{ $geographicActive ? '' : 'hidden' }}>
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.nationalities.*') ? 'active' : '' }}" data-section="nationalities">
+					<button type="button" data-url="{{ route('admin.settings.nationalities.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('passport_g.png') }}"
 							data-icon-active="{{ $asset('passport.png') }}"
@@ -124,8 +136,8 @@
 						<span class="text">Nacionalidades</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="usa-states">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.us-states.*') ? 'active' : '' }}" data-section="us-states">
+					<button type="button" data-url="{{ route('admin.settings.us-states.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('place_g.png') }}"
 							data-icon-active="{{ $asset('place.png') }}"
@@ -134,8 +146,8 @@
 						<span class="text">Estados EE.UU</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="departments">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.departments.*') ? 'active' : '' }}" data-section="departments">
+					<button type="button" data-url="{{ route('admin.settings.departments.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('place_g.png') }}"
 							data-icon-active="{{ $asset('place.png') }}"
@@ -147,8 +159,8 @@
 			</ul>
 		</li>
 
-		<li class="sidenav-button sidenav-accordion">
-			<button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
+		<li class="sidenav-button sidenav-accordion {{ $financialActive ? 'expanded' : '' }}">
+			<button type="button" class="sidenav-accordion-toggle" aria-expanded="{{ $financialActive ? 'true' : 'false' }}">
 				<img class="icon icon--image"
 					src="{{ $asset('money_g.png') }}"
 					data-icon-active="{{ $asset('money.png') }}"
@@ -157,9 +169,9 @@
 				<span class="text">Financieros</span>
 				<span class="chevron" aria-hidden="true"></span>
 			</button>
-			<ul class="sidenav-sublist" hidden>
-				<li class="sidenav-button sidenav-button--child" data-section="currencies">
-					<button type="button">
+			<ul class="sidenav-sublist" {{ $financialActive ? '' : 'hidden' }}>
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.currencies.*') ? 'active' : '' }}" data-section="currencies">
+					<button type="button" data-url="{{ route('admin.settings.currencies.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('divisa_g.png') }}"
 							data-icon-active="{{ $asset('divisa.png') }}"
@@ -168,8 +180,8 @@
 						<span class="text">Divisas</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="payment-status">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.payment-status.*') ? 'active' : '' }}" data-section="payment-status">
+					<button type="button" data-url="{{ route('admin.settings.payment-status.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('status_payment_g.png') }}"
 							data-icon-active="{{ $asset('status_payment.png') }}"
@@ -181,8 +193,8 @@
 			</ul>
 		</li>
 
-		<li class="sidenav-button sidenav-accordion">
-			<button type="button" class="sidenav-accordion-toggle" aria-expanded="false">
+		<li class="sidenav-button sidenav-accordion {{ $amenitiesActive ? 'expanded' : '' }}">
+			<button type="button" class="sidenav-accordion-toggle" aria-expanded="{{ $amenitiesActive ? 'true' : 'false' }}">
 				<img class="icon icon--image"
 					src="{{ $asset('amenities_g.png') }}"
 					data-icon-active="{{ $asset('amenities.png') }}"
@@ -191,9 +203,9 @@
 				<span class="text">Amenidades</span>
 				<span class="chevron" aria-hidden="true"></span>
 			</button>
-			<ul class="sidenav-sublist" hidden>
-				<li class="sidenav-button sidenav-button--child" data-section="foods">
-					<button type="button">
+			<ul class="sidenav-sublist" {{ $amenitiesActive ? '' : 'hidden' }}>
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.foods.*') ? 'active' : '' }}" data-section="foods">
+					<button type="button" data-url="{{ route('admin.settings.foods.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('food_g.png') }}"
 							data-icon-active="{{ $asset('food.png') }}"
@@ -202,8 +214,8 @@
 						<span class="text">Comidas</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="payment-methods">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.payment-methods.*') ? 'active' : '' }}" data-section="payment-methods">
+					<button type="button" data-url="{{ route('admin.settings.payment-methods.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('paymethod_g.png') }}"
 							data-icon-active="{{ $asset('paymethod.png') }}"
@@ -212,8 +224,8 @@
 						<span class="text">Métodos de pago</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="accommodation-types">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.accommodation-types.*') ? 'active' : '' }}" data-section="accommodation-types">
+					<button type="button" data-url="{{ route('admin.settings.accommodation-types.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('booking_g.png') }}"
 							data-icon-active="{{ $asset('booking.png') }}"
@@ -222,8 +234,8 @@
 						<span class="text">Tipos de alojamiento</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="nearby-areas">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.nearby-areas.*') ? 'active' : '' }}" data-section="nearby-areas">
+					<button type="button" data-url="{{ route('admin.settings.nearby-areas.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('near_g.png') }}"
 							data-icon-active="{{ $asset('near.png') }}"
@@ -232,8 +244,8 @@
 						<span class="text">Zonas cercanas</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="services">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.services.*') ? 'active' : '' }}" data-section="services">
+					<button type="button" data-url="{{ route('admin.settings.services.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('service_g.png') }}"
 							data-icon-active="{{ $asset('service.png') }}"
@@ -242,8 +254,8 @@
 						<span class="text">Servicios</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="activities">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.activities.*') ? 'active' : '' }}" data-section="activities">
+					<button type="button" data-url="{{ route('admin.settings.activities.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('activity_g.png') }}"
 							data-icon-active="{{ $asset('activity.png') }}"
@@ -252,8 +264,8 @@
 						<span class="text">Actividades</span>
 					</button>
 				</li>
-				<li class="sidenav-button sidenav-button--child" data-section="tags">
-					<button type="button">
+				<li class="sidenav-button sidenav-button--child {{ request()->routeIs('admin.settings.tags.*') ? 'active' : '' }}" data-section="tags">
+					<button type="button" data-url="{{ route('admin.settings.tags.index') }}">
 						<img class="icon icon--image"
 							src="{{ $asset('tag_g.png') }}"
 							data-icon-active="{{ $asset('tag.png') }}"

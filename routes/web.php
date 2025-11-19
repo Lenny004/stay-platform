@@ -4,6 +4,21 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\Admin\Settings\AccommodationTypeController;
+use App\Http\Controllers\Admin\Settings\ActivityController;
+use App\Http\Controllers\Admin\Settings\CurrencyController;
+use App\Http\Controllers\Admin\Settings\DepartmentController;
+use App\Http\Controllers\Admin\Settings\FoodController;
+use App\Http\Controllers\Admin\Settings\HotelStatusController;
+use App\Http\Controllers\Admin\Settings\NationalityController;
+use App\Http\Controllers\Admin\Settings\NearbyAreaController;
+use App\Http\Controllers\Admin\Settings\PaymentMethodController;
+use App\Http\Controllers\Admin\Settings\PaymentStatusController;
+use App\Http\Controllers\Admin\Settings\ReservationStatusController;
+use App\Http\Controllers\Admin\Settings\ServiceController;
+use App\Http\Controllers\Admin\Settings\TagController;
+use App\Http\Controllers\Admin\Settings\UserTypeController;
+use App\Http\Controllers\Admin\Settings\UsStateController;
 
 // ===== PÁGINA PRINCIPAL (DASHBOARD PÚBLICO) =====
 Route::get('/', function () {
@@ -51,6 +66,24 @@ Route::prefix('api')->group(function () {
 // ===== ADMINISTRACIÓN =====
 Route::middleware(['auth', 'admin.access'])->prefix('admin')->as('admin.')->group(function () {
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+
+    Route::prefix('settings')->as('settings.')->group(function () {
+        Route::resource('accommodation-types', AccommodationTypeController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('activities', ActivityController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('currencies', CurrencyController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('departments', DepartmentController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('foods', FoodController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('hotel-status', HotelStatusController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('nationalities', NationalityController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('nearby-areas', NearbyAreaController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('payment-methods', PaymentMethodController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('payment-status', PaymentStatusController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('reservation-status', ReservationStatusController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('services', ServiceController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('tags', TagController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('user-types', UserTypeController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('us-states', UsStateController::class)->only(['index', 'store', 'update', 'destroy']);
+    });
 });
 
 // ===== RUTAS PROTEGIDAS =====

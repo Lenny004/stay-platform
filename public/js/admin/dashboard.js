@@ -6,7 +6,7 @@
         }
         const sectionItems = Array.from(document.querySelectorAll('.sidenav-button[data-section]'));
         const sectionButtons = sectionItems
-            .map((item) => item.querySelector('button'))
+            .map((item) => item.querySelector('button, a'))
             .filter((button) => button instanceof HTMLElement);
         const accordionToggles = Array.from(document.querySelectorAll('.sidenav-accordion-toggle'));
         const accordions = Array.from(document.querySelectorAll('.sidenav-accordion'));
@@ -20,9 +20,6 @@
         const modalClosers = Array.from(document.querySelectorAll('[data-close-modal]'));
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') ?? '';
         const loginUrl = document.body?.dataset?.loginUrl ?? '/login';
-        const searchInput = document.getElementById('search');
-        const refreshButton = document.getElementById('refresh-table');
-        const tableRows = Array.from(document.querySelectorAll('.data-table tbody tr'));
 
         const sectionTitles = {
             dashboard: 'Dashboard',
@@ -37,10 +34,10 @@
             'payment-methods': 'Métodos de pago',
             'accommodation-types': 'Tipos de alojamiento',
             'nearby-areas': 'Zonas cercanas',
-            users: 'Usuarios',
+            'user-types': 'Usuarios',
             'hotel-status': 'Estado de Hotel',
             nationalities: 'Nacionalidades',
-            'usa-states': 'Estados EE.UU',
+            'us-states': 'Estados EE.UU',
             departments: 'Departamentos',
             currencies: 'Divisas',
             'payment-status': 'Estados de Pago',
@@ -196,6 +193,12 @@
                     return;
                 }
 
+                const targetUrl = button.dataset.url;
+                if (targetUrl) {
+                    window.location.href = targetUrl;
+                    return;
+                }
+
                 setActiveButton(item);
                 if (sectionTitle) {
                     sectionTitle.textContent = sectionTitles[section] ?? section;
@@ -212,32 +215,64 @@
             });
         });
 
-        // Búsqueda en tabla
-        const filterTable = (value) => {
-            const normalized = value.trim().toLowerCase();
-            tableRows.forEach((row) => {
-                if (!normalized) {
-                    row.style.removeProperty('display');
+        // Inicializa las tablas de configuración
+        const initSettingsTables = () => {
+            const containers = Array.from(document.querySelectorAll('[data-settings-resource]'));
+            containers.forEach((container) => {
+                if (!(container instanceof HTMLElement)) {
                     return;
                 }
-                const matches = row.textContent?.toLowerCase().includes(normalized);
-                row.style.display = matches ? '' : 'none';
+                if (container.dataset.settingsInitialized === 'true') {
+                    return;
+                }
+                container.dataset.settingsInitialized = 'true';
+
+                const searchForm = container.querySelector('.content-actions__search');
+                if (searchForm instanceof HTMLFormElement) {
+                    searchForm.addEventListener('submit', (event) => event.preventDefault());
+                }
+
+                const searchInput = container.querySelector('[data-settings-search]');
+                const refreshButton = container.querySelector('[data-settings-refresh]');
+                const tableElement = container.parentElement?.querySelector('[data-settings-table]');
+
+                if (!(tableElement instanceof HTMLTableElement)) {
+                    return;
+                }
+
+                const filterRows = (value) => {
+                    const normalized = value.trim().toLowerCase();
+                    const rows = Array.from(tableElement.querySelectorAll('tbody tr'));
+                    rows.forEach((row) => {
+                        if (!normalized) {
+                            row.style.removeProperty('display');
+                            return;
+                        }
+                        const matches = row.textContent?.toLowerCase().includes(normalized);
+                        row.style.display = matches ? '' : 'none';
+                    });
+                };
+
+                if (searchInput instanceof HTMLInputElement) {
+                    searchInput.addEventListener('input', () => filterRows(searchInput.value));
+                    filterRows(searchInput.value);
+                } else {
+                    filterRows('');
+                }
+
+                if (refreshButton instanceof HTMLElement) {
+                    refreshButton.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        if (searchInput instanceof HTMLInputElement) {
+                            searchInput.value = '';
+                        }
+                        filterRows('');
+                    });
+                }
             });
         };
 
-        if (searchInput) {
-            searchInput.addEventListener('input', () => filterTable(searchInput.value));
-        }
-
-        if (refreshButton) {
-            refreshButton.addEventListener('click', (event) => {
-                event.preventDefault();
-                if (searchInput) {
-                    searchInput.value = '';
-                }
-                filterTable('');
-            });
-        }
+        initSettingsTables();
 
         // Modal handlers
         modalTriggers.forEach((trigger) => {

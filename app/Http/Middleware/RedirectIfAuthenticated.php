@@ -27,7 +27,6 @@ class RedirectIfAuthenticated
                 if ($user && (int) $user->user_type_id !== 3) {
                     return redirect($this->buildPath($request, 'admin/dashboard'));
                 }
-
                 return redirect($this->buildPath($request));
             }
         }
